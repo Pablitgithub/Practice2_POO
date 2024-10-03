@@ -1,12 +1,12 @@
-﻿namespace Practice1
+namespace Practice1
 {
     abstract class Vehicle : IMessageWritter
     {
         private string typeOfVehicle;
-        private string plate;
+        private string? plate;
         private float speed;
 
-        public Vehicle(string typeOfVehicle, string plate)
+        public Vehicle(string typeOfVehicle, string? plate)
         {
             this.typeOfVehicle = typeOfVehicle;
             this.plate = plate;
@@ -24,9 +24,9 @@
             return typeOfVehicle;
         }
 
-        public string GetPlate()
+        public virtual string GetPlate() //Permite sobreescribir el método en las clases hijas
         {
-            return plate;
+            return plate ?? "No plate";
         }
 
 
@@ -41,7 +41,7 @@
         }
 
         //Implment interface with Vechicle message structure
-        public string WriteMessage(string message)
+        public virtual string WriteMessage(string message)
         {
             return $"{this}: {message}";
         }
