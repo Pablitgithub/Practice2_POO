@@ -1,8 +1,8 @@
 namespace Practice1
 
 {
-	class City
-	{
+	class City : IMessageWritter
+    {
 		private List<Taxi> taxis;
 		private PoliceStation policeStation;
 
@@ -15,24 +15,29 @@ namespace Practice1
 		public void RegisterTaxi(Taxi taxi)
 		{
 			taxis.Add(taxi);
-			Console.WriteLine($"Taxi with plate {taxi.GetPlate()} registered.");
-		}
+            Console.WriteLine(WriteMessage($"Taxi with plate {taxi.GetPlate()} registered."));
+        }
 
-		public void RemoveTaxi(Taxi taxi)
+        public void RemoveTaxi(Taxi taxi)
 		{
 			if (taxis.Remove(taxi))
 			{
-				Console.WriteLine($"Taxi with plate {taxi.GetPlate()} license revoked.");
-			}
-			else
+                Console.WriteLine(WriteMessage($"Taxi with plate {taxi.GetPlate()} license revoked."));
+            }
+            else
 			{
-				Console.WriteLine($"Taxi with plate {taxi.GetPlate()} not found.");
-			}
-		}
+                Console.WriteLine(WriteMessage($"Taxi with plate {taxi.GetPlate()} not found."));
+            }
+        }
 
 		public PoliceStation GetPoliceStation()
 		{
 			return policeStation;
 		}
-	}
+
+        public string WriteMessage(string message)
+        {
+            return $"IMATLAND: {message}";
+        }
+    }
 }
